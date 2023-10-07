@@ -1,7 +1,7 @@
 import numpy as np
 
 class AdalineGD:
-    """Perceptron Classifier
+    """AdalineGD Classifier
     """
 
 

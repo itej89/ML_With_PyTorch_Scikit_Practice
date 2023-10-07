@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 
 from algorithms.perceptron import Perceptron
 from algorithms.adaline_gd import AdalineGD
+from algorithms.adaline_sgd import AdalineSGD
 from datasets.iris_setosa_dataset import IrisSetosaDataSet
 from visualize.decision_boundary_plot import plot_decision_regions
 
@@ -17,7 +18,7 @@ iris_setosa_ds.standardize_featues()
 """Create model
 -------------------------------------------
 """
-nn = AdalineGD(eta=0.5, n_itr=20)
+nn = AdalineSGD(eta=0.01, n_itr=20)
 nn.fit(iris_setosa_ds.X, iris_setosa_ds.y)
 
 
