@@ -33,35 +33,35 @@ for name, module in model.named_modules():
     if len(name.split(".")) == 4:
         layer_names_to_hook.append(name)
 
-#===================================  Record Data
-# hook_handles = []
-# for name, module in model.named_modules():
-#     if len(name.split(".")) == 4:
-#         print(f"Registering hook for: {name}")
-#         handle = module.register_forward_hook(save_activation_hook(name))
-#         hook_handles.append(handle)
+===================================  Record Data
+hook_handles = []
+for name, module in model.named_modules():
+    if len(name.split(".")) == 4:
+        print(f"Registering hook for: {name}")
+        handle = module.register_forward_hook(save_activation_hook(name))
+        hook_handles.append(handle)
 
 
 
-# inputs = tokenizer("Hello, this is Alice in the wonderland!!", return_tensors="pt")
+inputs = tokenizer("Hello, this is Alice in the wonderland!!", return_tensors="pt")
 
-# with torch.no_grad():
-#     tensor_directory = "/home/vpolamre/ML_With_PyTorch_Scikit_Practice/Profiling/hooks/run/tensor_model_iter_1"
-#     os.makedirs(tensor_directory, exist_ok=True)
-#     model(**inputs)
+with torch.no_grad():
+    tensor_directory = "/home/vpolamre/ML_With_PyTorch_Scikit_Practice/Profiling/hooks/run/tensor_model_iter_1"
+    os.makedirs(tensor_directory, exist_ok=True)
+    model(**inputs)
 
-# for name in layer_names_to_hook:
-#     tensor_list = activations[name]
-#     if tensor_list:
-#         print(f"Activations for '{name}':")
-#         print(f"Shape: {tensor_list[0].shape}\n")
-#     else:
-#         print(f"No activation captured for '{name}'")
+for name in layer_names_to_hook:
+    tensor_list = activations[name]
+    if tensor_list:
+        print(f"Activations for '{name}':")
+        print(f"Shape: {tensor_list[0].shape}\n")
+    else:
+        print(f"No activation captured for '{name}'")
 
 
-# for handle in hook_handles:
-#     handle.remove()
-#=====================================================
+for handle in hook_handles:
+    handle.remove()
+=====================================================
 
 
 #===================================  Replay Data
